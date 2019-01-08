@@ -23,6 +23,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**/*.do"/>
+            <mvc:exclude-mapping path="/login.do"/>
             <bean class="com.neuedu.web.TestMethod"/>
         </mvc:interceptor>
     </mvc:interceptors>

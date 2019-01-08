@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface UserDao {
     public List<User> getUsers();
+    public User getOne(String username);
 }

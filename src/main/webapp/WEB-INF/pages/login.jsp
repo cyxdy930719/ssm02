@@ -12,8 +12,8 @@
 </head>
 <body>
 <form action="dologin.do">
-    <input type="text" name="username"><br>
-    <<input type="password" name="pwd">
+    用户：<input type="text" name="username"><br>
+    密码：<input type="password" name="pwd">
     <input type="submit" value="login">
 </form>
 </body>

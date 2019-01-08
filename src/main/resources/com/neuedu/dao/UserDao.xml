@@ -6,4 +6,10 @@
     <select id="getUsers" resultType="User">
         select * from user
     </select>
+    <select id="getOne" resultType="User">
+        select * from USER
+        <where>
+            username=#{username}
+        </where>
+    </select>
 </mapper>
