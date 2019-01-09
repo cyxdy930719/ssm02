@@ -15,7 +15,13 @@ public class TestMethod implements HandlerInterceptor {
         System.out.println("prehandle");
         Cookie[] coo = httpServletRequest.getCookies();
         Map<String,Cookie> maps = CookieUntil.getCookies(coo);
-        
+        Cookie cookie = maps.get("username");
+
+        if (cookie==null){
+            httpServletResponse.sendRedirect("login.do");
+        }else {
+            return true;
+        }
         return false;
     }
 

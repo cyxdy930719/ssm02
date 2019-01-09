@@ -2,6 +2,7 @@ package com.neuedu.test;
 
 import com.neuedu.dao.UserDao;
 import com.neuedu.pojo.User;
+import com.neuedu.service.IUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,12 +15,19 @@ import java.util.List;
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 public class TestWeb {
     @Resource
+    private IUserService service;
     private UserDao dao;
     @Test
     public void test(){
-        List<User> users = dao.getUsers();
-        for(User u:users){
+        List<User> list = service.getUsers();
+        for (User u:list){
             System.out.println(u);
         }
+    }
+
+    @Test
+    public void test1(){
+        User user= service.getOne("root");
+        System.out.println(user);
     }
 }

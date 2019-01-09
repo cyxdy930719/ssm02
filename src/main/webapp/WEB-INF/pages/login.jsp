@@ -13,8 +13,9 @@
 <body>
 <form action="dologin.do">
     用户：<input type="text" name="username"><br>
-    密码：<input type="password" name="pwd">
+    密码：<input type="password" name="password">
     <input type="submit" value="login">
+
 </form>
 </body>
 </html>
