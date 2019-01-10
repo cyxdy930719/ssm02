@@ -30,4 +30,11 @@ public class TestWeb {
         User user= service.getOne("root");
         System.out.println(user);
     }
+    @Test
+    public void test2(){
+        User user = new User();
+        user.setUsername("root");
+        List<User> u = service.likeUsers(user);
+        System.out.println(u);
+    }
 }

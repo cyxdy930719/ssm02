@@ -2,11 +2,13 @@ package com.neuedu.web;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.util.StringUtil;
 import com.mysql.jdbc.MultiHostMySQLConnection;
 import com.neuedu.pojo.User;
 import com.neuedu.service.IUserService;
 import com.neuedu.service.UserServiceImpl;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,16 +30,29 @@ public class WebTest {
     @Autowired
     private IUserService service;
     @RequestMapping("/index.do")
-    public String index(ModelMap map,HttpServletRequest req){
+    public String index(ModelMap map,HttpServletRequest req,User user){
         int pageNum = req.getParameter("pageNum")==null?1:Integer.parseInt(req.getParameter("pageNum"));
         /*第几页*/
         int pageSize = 2;
         /*显示几条数据*/
         PageHelper.startPage(pageNum,pageSize);
-        List<User> users = service.getUsers();
-        PageInfo<User> page = new PageInfo<>(users);
-        map.addAttribute("users",users);
-        map.addAttribute("page",page);
+        List<User> likeUsers=null;
+        PageInfo<User> page = null;
+        if(StringUtils.isBlank(user.getUsername())){
+            user.setUsername(null);
+            likeUsers = service.likeUsers(user);
+            page = new PageInfo<>(likeUsers,4);
+            map.addAttribute("page",page);
+            map.addAttribute("users",likeUsers);
+        }else{
+            likeUsers = service.likeUsers(user);
+            String uname = "&username="+user.getUsername();
+            page = new PageInfo<>(likeUsers,4);
+            map.addAttribute("uname",uname);
+            map.addAttribute("page",page);
+            map.addAttribute("users",likeUsers);
+        }
+
         return "index";
     }
     @RequestMapping("/login.do")

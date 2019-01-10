@@ -18,4 +18,9 @@ public class UserServiceImpl implements IUserService {
     public User getOne(String username) {
         return dao.getOne(username);
     }
+
+    @Override
+    public List<User> likeUsers(User user) {
+        return dao.likeUsers(user);
+    }
 }

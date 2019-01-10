@@ -10,4 +10,5 @@ public interface UserDao {
     public User getOne(String username);
     @Insert(value = "insert into user(username,password,tele) values(qqq,132,46546)")
     public int insertOnes(User user);
+    public List<User> likeUsers(User user);
 }

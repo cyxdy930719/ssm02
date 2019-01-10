@@ -12,4 +12,12 @@
             username=#{username}
         </where>
     </select>
+    <select id="likeUsers" resultType="User" parameterType="User">
+        select * from user
+        <where>
+            <if test="username!=null">
+               and username like concat('%',#{username},'%')
+            </if>
+        </where>
+    </select>
 </mapper>
